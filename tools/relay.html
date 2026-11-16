@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><title>relay</title><body>relay
+<script>
+(async()=>{
+  const q=new URLSearchParams(location.search); const dir=q.get('d'); const n=+q.get('n');
+  const out=[];
+  for(let i=1;i<=n;i++){ const r=await fetch('https://raw.githubusercontent.com/JeffreyZC-17/sentilora-media/main/'+dir+'/'+i+'.jpg',{cache:'no-store'}); out.push(await r.blob()); }
+  if(window.opener){ window.opener.postMessage({claudeImgs:out},'*'); document.body.textContent='sent '+out.length; } else { document.body.textContent='no opener'; }
+})();
+</script>
